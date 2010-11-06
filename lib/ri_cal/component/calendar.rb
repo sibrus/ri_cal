@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 module RiCal
   class Component
     #- ©2009 Rick DeNatale, All rights reserved. Refer to the file README.txt for the license
@@ -17,7 +18,7 @@ module RiCal
       end
 
       def tz_info_source? #:nodoc:
-        @tz_source == 'TZINFO'
+        (@tz_source == 'TZINFO') || timezones.empty?
       end
 
       def required_timezones # :nodoc:
@@ -200,7 +201,7 @@ module RiCal
                 n = n - 1
                 before = string[0, n]
                 after = string[n..-1]
-              end      
+              end
               [before, after.empty? ? nil : after]
             end
           end
@@ -249,7 +250,7 @@ module RiCal
           export_stream.string
         end
       end
-      
+
       alias_method :export_to, :export
 
     end
